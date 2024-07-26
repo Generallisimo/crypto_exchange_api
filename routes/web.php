@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\ConversionRateController;
+use App\Http\Controllers\ChangeController;
+use App\Http\Controllers\ConfirmationController;
+use App\Http\Controllers\ExchangeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,20 +21,23 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-
-Route::get('/change', [ConversionRateController::class, 'change'])->name('change');
-Route::get('/api/conversion-rate', [ConversionRateController::class, 'getConversionRate']);
+// Change list
+Route::get('/change', [ChangeController::class, 'change'])->name('change');
+Route::get('/api/conversion-rate', [ChangeController::class, 'getConversionRate']);
 // need add post 
-Route::get('/changeSend', [ConversionRateController::class, 'sendForm'])->name('sendForm');
-Route::get('/confirmation{id}', [ConversionRateController::class, 'confirmation'])->name('confirmation');
+Route::get('/changeSend', [ChangeController::class, 'sendForm'])->name('sendForm');
+
+// Confirmation
+Route::get('/confirmation{id}', [ConfirmationController::class, 'confirmation'])->name('confirmation');
+
+// Exchange
+Route::get('/exchange{id}', [ExchangeController::class, 'exchangeID'])->name('exchange');
 
 
 
-
-
-Route::get('/exchange', function () {
-    return view('exchange');
-})->name('exchange');
+// Route::get('/exchange', function () {
+//     return view('exchange');
+// })->name('exchange');
 
 
 Route::get('/finish', function () {

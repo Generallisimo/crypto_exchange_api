@@ -24,7 +24,7 @@
 						</li>
 					</ul>
 				</div>
-				<form action="#" method="POST" data-page-address="exchange.html" class="template__body confirmation">
+				<form action="{{route('exchange', ['id' => $exchangeID])}}" method="POST" data-page-address="{{route('exchange', ['id' => $exchangeID])}}" class="template__body confirmation">
 					<div class="confirmation__values values-confirmation">
 
 						<!-- SEND -->

@@ -32,7 +32,7 @@
 						</h2>
 						<div class="indification-change__value">
 							<div class="indification-change__text template-value ">
-								AfvxTRqy8
+								{{$exchangeID}}
 							</div>
 							<button class="indification-change__button" aria-label="copy address ">
 								<img src="img/template/copy.svg" alt="copy">
