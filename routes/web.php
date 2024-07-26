@@ -20,14 +20,14 @@ Route::get('/about', function () {
 })->name('about');
 
 
-// Route::get('/change', function () {
-//     return view('change');
-// })->name('change');
-Route::get('/change', [ConversionRateController::class, 'getPrice'])->name('change');
+Route::get('/change', [ConversionRateController::class, 'change'])->name('change');
+Route::get('/api/conversion-rate', [ConversionRateController::class, 'getConversionRate']);
+// need add post 
+Route::get('/changeSend', [ConversionRateController::class, 'sendForm'])->name('sendForm');
+Route::get('/confirmation{id}', [ConversionRateController::class, 'confirmation'])->name('confirmation');
 
-Route::get('/confirmation', function () {
-    return view('confirmation');
-})->name('confirmation');
+
+
 
 
 Route::get('/exchange', function () {
@@ -40,13 +40,21 @@ Route::get('/finish', function () {
 })->name('finish');
 
 
-//
-Route::get('/api/conversion-rate', [ConversionRateController::class, 'getConversionRate']);
-
-
 
 
 
 Route::get('/test', function(){
     return view ('test');
 })->name('test');
+
+
+
+
+// Route::get('/confirmation{id}', function ($id) {
+//     return view('confirmation', ['transactionId' => $id]);
+// })->name('confirmation');
+
+// Route::get('/debug', function () {
+//     $transactionId = bin2hex(random_bytes(4));
+//     return 'Generated ID: ' . $transactionId;
+// });

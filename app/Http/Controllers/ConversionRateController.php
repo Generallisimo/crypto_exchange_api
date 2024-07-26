@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
+
 class ConversionRateController extends Controller
 {
     public function getConversionRate(Request $request)
@@ -27,17 +28,31 @@ class ConversionRateController extends Controller
         if ($response->successful()) {
             $data = $response->json();
             $price = $data['price'];
-            Log::info('Price: ' . $price);
+            // Log::info('Price: ' . $price);
         } else {
             $price = 'Error fetching price';
-            Log::error('Error fetching price: ' . $response->body());
+            // Log::error('Error fetching price: ' . $response->body());
         }
 
         return $response->json();
     }
 
-    public function getPrice(Request $request)
+    public function change(Request $request)
     {
         return view('change');
     }
+
+    public function sendForm(Request $request)
+    {
+        $transactionId = bin2hex(random_bytes(4));
+    
+        return redirect()->route('confirmation', ['id' => $transactionId]);
+    }
+    
+    public function confirmation ($id) {
+        
+        return view('confirmation', ['exchangeID' => $id]);
+    
+    }
+
 }

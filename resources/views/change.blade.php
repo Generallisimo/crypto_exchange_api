@@ -34,7 +34,8 @@
 					</div>
 					<div data-tabs-body class="exchange__tabs">
 						<!-- Crypto Exchange -->
-						<form action="#" id="exchangeForm" method="POST" data-page-address="confirmation.html" class="exchange__main  exchange__main--change">
+						<form action="{{ route('sendForm') }}" data-page-address="{{route('sendForm')}}" id="exchangeForm" method="POST" class="exchange__main exchange__main--change">
+    					@csrf
 							<div class="exchange__body body-exchange">
 								<div class="body-exchange__row ">
 									<label class="body-exchange__label" for="send-coins-value"> You send</label>
@@ -76,40 +77,27 @@
 													</li>
 													<li class="option__item">
 														<div class="option__caption">
-															Ethereum
+															USDT
 														</div>
 														<div class="option__position">
 															<div class="option__icon">
-																<img src="img/change/ETH.svg" alt="ETH">
+																<img src="img/change/USDT.svg" alt="USDT">
 															</div>
 															<div class="option__label">
-																ETH
+																USDT
 															</div>
 														</div>
 													</li>
 													<li class="option__item">
 														<div class="option__caption">
-															TRON
+															Moreno
 														</div>
 														<div class="option__position">
 															<div class="option__icon">
-																<img src="img/change/TRX.svg" alt="TRX">
+																<img src="img/change/XMR.svg" alt="XMR">
 															</div>
 															<div class="option__label">
-																TRX
-															</div>
-														</div>
-													</li>
-													<li class="option__item">
-														<div class="option__caption">
-															Litecoin
-														</div>
-														<div class="option__position">
-															<div class="option__icon">
-																<img src="img/change/LTC.svg" alt="LTC">
-															</div>
-															<div class="option__label">
-																LTC
+																XMR
 															</div>
 														</div>
 													</li>
@@ -119,32 +107,32 @@
 												</div>
 												<ul class="select__options option">
 													<li class="option__item">
-														<div class="option__caption option__caption--new ">
-															BabyDoge
+														<div class="option__caption">
+															Ruble
 														</div>
 														<div class="option__position">
 															<div class="option__icon">
-																<img src="img/change/BABYDOGE.svg" alt="BABYDOGE">
+																<img src="img/change/RUB.svg" alt="RUB">
 															</div>
 															<div class="option__label">
-																BDG
+																RUB
 															</div>
 														</div>
 													</li>
 													<li class="option__item">
 														<div class="option__caption">
-															Algorand
+															Ukraine
 														</div>
 														<div class="option__position">
 															<div class="option__icon">
-																<img src="img/change/ALGO.svg" alt="ALGO">
+																<img src="img/change/UAH.svg" alt="UAH">
 															</div>
 															<div class="option__label">
-																ALG
+																UAH
 															</div>
 														</div>
 													</li>
-												</ul>
+												</ul> 
 											</div>
 										</div>
 									</div>
@@ -165,13 +153,13 @@
 
 								<div class="body-exchange__row">
 									<label class="body-exchange__label" for="get-coins-value">You get</label>
-									<input autocomplete="off" type="number" id="get-coins-value" name="get-coins-value" placeholder="≈1.81059138" style="pointer-events:all" class="body-exchange__input">
+									<input autocomplete="off" type="" id="get-coins-value" name="get-coins-value" placeholder="≈1.81059138" style="pointer-events:all" class="body-exchange__input">
 									<div class=" body-exchange__select select">
 										<div class="select__button select__button2">
 											<div class="select__icon">
-												<img src="img/change/ETH.svg" alt="ETH">
+												<img src="img/change/XMR.svg" alt="XMR">
 											</div>
-											<input class="select__value select__value2" value="ETH" placeholder="ETH" type="text" name="get-coins-option" id="get-coins-option">
+											<input class="select__value select__value2" value="XMR" placeholder="XMR" type="text" name="get-coins-option" id="get-coins-option">
 										</div>
 										<div class="select__wrapper select__wrapper2">
 											<div class="select__search">
@@ -203,40 +191,27 @@
 													</li>
 													<li class="option__item">
 														<div class="option__caption">
-															Ethereum
+															USDT
 														</div>
 														<div class="option__position">
 															<div class="option__icon">
-																<img src="img/change/ETH.svg" alt="ETH">
+																<img src="img/change/USDT.svg" alt="USDT">
 															</div>
 															<div class="option__label">
-																ETH
+																USDT
 															</div>
 														</div>
 													</li>
 													<li class="option__item">
 														<div class="option__caption">
-															TRON
+															Moreno
 														</div>
 														<div class="option__position">
 															<div class="option__icon">
-																<img src="img/change/TRX.svg" alt="TRX">
+																<img src="img/change/XMR.svg" alt="XMR">
 															</div>
 															<div class="option__label">
-																TRX
-															</div>
-														</div>
-													</li>
-													<li class="option__item">
-														<div class="option__caption">
-															Litecoin
-														</div>
-														<div class="option__position">
-															<div class="option__icon">
-																<img src="img/change/LTC.svg" alt="LTC">
-															</div>
-															<div class="option__label">
-																LTC
+																XMR
 															</div>
 														</div>
 													</li>
@@ -244,34 +219,35 @@
 												<div class="select__title">
 													Other currencies
 												</div>
+												
 												<ul class="select__options option">
 													<li class="option__item">
-														<div class="option__caption option__caption--new ">
-															BabyDoge
+														<div class="option__caption">
+															Ruble
 														</div>
 														<div class="option__position">
 															<div class="option__icon">
-																<img src="img/change/BABYDOGE.svg" alt="BABYDOGE">
+																<img src="img/change/RUB.svg" alt="RUB">
 															</div>
 															<div class="option__label">
-																BDG
+																RUB
 															</div>
 														</div>
 													</li>
 													<li class="option__item">
 														<div class="option__caption">
-															Algorand
+															Ukraine
 														</div>
 														<div class="option__position">
 															<div class="option__icon">
-																<img src="img/change/ALGO.svg" alt="ALGO">
+																<img src="img/change/UAH.svg" alt="UAH">
 															</div>
 															<div class="option__label">
-																ALG
+																UAH
 															</div>
 														</div>
 													</li>
-												</ul>
+												</ul> 
 											</div>
 										</div>
 									</div>

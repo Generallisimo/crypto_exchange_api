@@ -1,84 +1,126 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Переменные для хранения выбранных валют
     let fromCurrency = 'BTC';
     let toCurrency = 'USDT';
 
-    // Получение валюты 1
     const optionItems1 = document.querySelectorAll('.select__wrapper1');
     const staticCurrency1 = document.querySelector('.select__value1');
-    
+
     function logCurrency1() {
         console.log("Selected Currency 1:", staticCurrency1.value);
-        fromCurrency = staticCurrency1.value; // Обновляем выбранную валюту 1
+        fromCurrency = staticCurrency1.value;
     }
-    
+
     logCurrency1();
-    
+
     optionItems1.forEach(item => {
         item.addEventListener('click', function() {
             const selectedValueElement = document.querySelector(".select__button1 .select__value");
             fromCurrency = selectedValueElement.value;
             console.log("Updated Currency 1:", fromCurrency);
-            updateConversion(); // Обновляем конвертацию при изменении валюты
+            updateConversion();
         });
     });
 
-    // Получение валюты 2
     const optionItems2 = document.querySelectorAll('.select__wrapper2');
     const staticCurrency2 = document.querySelector('.select__value2');
-    
+
     function logCurrency2() {
         console.log("Selected Currency 2:", staticCurrency2.value);
-        toCurrency = staticCurrency2.value; // Обновляем выбранную валюту 2
+        toCurrency = staticCurrency2.value;
     }
-    
+
     logCurrency2();
-    
+
     optionItems2.forEach(item => {
         item.addEventListener('click', function() {
             const selectedValueElement = document.querySelector(".select__button2 .select__value");
             toCurrency = selectedValueElement.value;
             console.log("Updated Currency 2:", toCurrency);
-            updateConversion(); // Обновляем конвертацию при изменении валюты
+            updateConversion();
         });
     });
 
-    // Сумма пользователя
     const sendAmount = document.getElementById('send-coins-value');
     sendAmount.addEventListener('input', function() {
         updateConversion();
     });
 
-    // Получение суммы
     const getCoinsValueInput = document.getElementById('get-coins-value');
-    
-    // Функция для получения курса валют
+
     async function getConversionRate(fromCurrency, toCurrency) {
+        const intermediateCurrency = 'USDT'; // Промежуточная валюта
+        let rate = null;
+
         try {
-            const response = await fetch(`/api/conversion-rate?from=${fromCurrency}&to=${toCurrency}`);
-            const data = await response.json();
-            console.log('API Response:', data);
-            return parseFloat(data.price);
+            // Попытка получить прямую пару
+            let response = await fetch(`/api/conversion-rate?from=${fromCurrency}&to=${toCurrency}`);
+            let data = await response.json();
+
+            if (data.price) {
+                rate = parseFloat(data.price);
+            } else {
+                // Попытка получить обратную пару
+                console.log('Direct pair not found, checking reverse pair...');
+                const reverseResponse = await fetch(`/api/conversion-rate?from=${toCurrency}&to=${fromCurrency}`);
+                const reverseData = await reverseResponse.json();
+
+                if (reverseData.price) {
+                    rate = 1 / parseFloat(reverseData.price);
+                } else if (fromCurrency === 'XMR' && (toCurrency === 'RUB' || toCurrency === 'UAH')) {
+                    // Если прямая и обратная пары не найдены, используем промежуточную конвертацию
+                    console.log('Pair not found, using intermediate currency');
+                    const intermediateResponse1 = await fetch(`/api/conversion-rate?from=${fromCurrency}&to=${intermediateCurrency}`);
+                    const intermediateData1 = await intermediateResponse1.json();
+
+                    const intermediateResponse2 = await fetch(`/api/conversion-rate?from=${intermediateCurrency}&to=${toCurrency}`);
+                    const intermediateData2 = await intermediateResponse2.json();
+
+                    if (intermediateData1.price && intermediateData2.price) {
+                        const intermediateRate1 = parseFloat(intermediateData1.price);
+                        const intermediateRate2 = parseFloat(intermediateData2.price);
+                        rate = intermediateRate1 * intermediateRate2;
+                    } else {
+                        throw new Error('Intermediate pairs not found or error retrieving rate');
+                    }
+                } else if ((fromCurrency === 'RUB' || fromCurrency === 'UAH') && toCurrency === 'XMR') {
+                    console.log('Pair not found, using intermediate currency');
+                    const intermediateResponse3 = await fetch(`api/conversion-rate?from=${toCurrency}&to=${intermediateCurrency}`)
+                    const intermediateData3 = await intermediateResponse3.json()
+
+                    const intermediateResponse4 = await fetch(`api/conversion-rate?from=${intermediateCurrency}&to=${fromCurrency}`)
+                    const intermediateData4 = await intermediateResponse4.json()
+                    
+                    if(intermediateData3.price && intermediateData4.price){
+                        rate = 1 / (parseFloat(intermediateData3.price) * parseFloat(intermediateData4.price))
+                    }else {
+                        throw new Error('Intermediate pairs not found or error retrieving rate');
+                    }
+                }
+                else {
+                    throw new Error('Direct and reverse pairs not found or error retrieving rate');
+                }
+            }
+
+            return rate;
         } catch (error) {
             console.error('Error fetching conversion rate:', error);
             return null;
         }
     }
 
-    // Функция для обновления результата конвертации
     async function updateConversion() {
         const amount = parseFloat(sendAmount.value);
-        
+
         if (isNaN(amount)) {
             getCoinsValueInput.value = 'Invalid amount';
             return;
         }
 
         const rate = await getConversionRate(fromCurrency, toCurrency);
-        
+
         if (rate) {
             const convertedAmount = amount * rate;
-            getCoinsValueInput.value = convertedAmount.toFixed(8); // Округляем до 8 знаков после запятой
+            getCoinsValueInput.value = convertedAmount.toFixed(8);
         } else {
             getCoinsValueInput.value = 'Error retrieving rate';
         }
