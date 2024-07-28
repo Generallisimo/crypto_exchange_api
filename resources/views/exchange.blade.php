@@ -50,7 +50,7 @@
 									You send
 								</h3>
 								<div class="awaiting-change__value  template-value">
-									60.5237914 USDTTRC20
+								{{$exchangeForm['send-coins-value'] }} {{$exchangeForm['send-coins-option']}}
 								</div>
 							</div>
 							<div class="awaiting-change__item">
@@ -59,7 +59,7 @@
 								</h3>
 								<div class="awaiting-change__row">
 									<div class="awaiting-change__value  template-value template-value--small">
-										TAMAsT6xVks3TwCviX5VwoTrtwKUwa4fi7
+									{{$exchangeForm['payout-exchange'] }}
 									</div>
 									<div class="awaiting-change__actions actions">
 										<button class="actions__button actions__button--copy" aria-label="copy address ">
@@ -86,7 +86,7 @@
 								You get
 							</h3>
 							<div class="get-change__value  template-value">
-								≈ 441.21505376 TRX
+							{{$exchangeForm['get-coins-value'] }} {{$exchangeForm['get-coins-option']}}
 							</div>
 
 							<h3 class="get-change__subtitle template-subtitle ">

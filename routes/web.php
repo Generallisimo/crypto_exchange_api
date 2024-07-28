@@ -24,14 +24,14 @@ Route::get('/about', function () {
 // Change list
 Route::get('/change', [ChangeController::class, 'change'])->name('change');
 Route::get('/api/conversion-rate', [ChangeController::class, 'getConversionRate']);
-// need add post 
-Route::get('/changeSend', [ChangeController::class, 'sendForm'])->name('sendForm');
+// 
+Route::post('/change/send', [ChangeController::class, 'sendForm'])->name('sendForm');
 
 // Confirmation
 Route::get('/confirmation{id}', [ConfirmationController::class, 'confirmation'])->name('confirmation');
 
 // Exchange
-Route::get('/exchange{id}', [ExchangeController::class, 'exchangeID'])->name('exchange');
+Route::post('/exchange{id}', [ExchangeController::class, 'exchangeID'])->name('exchange');
 
 
 

@@ -34,8 +34,8 @@
 					</div>
 					<div data-tabs-body class="exchange__tabs">
 						<!-- Crypto Exchange -->
-						<form action="{{ route('sendForm') }}" data-page-address="{{route('sendForm')}}" id="exchangeForm" method="POST" class="exchange__main exchange__main--change">
-    					@csrf
+						<form method="POST" action="{{ route('sendForm') }}"  data-page-address="{{route('sendForm')}}" id="exchangeForm"  class="exchange__main exchange__main--change">
+							@CSRF
 							<div class="exchange__body body-exchange">
 								<div class="body-exchange__row ">
 									<label class="body-exchange__label" for="send-coins-value"> You send</label>
@@ -108,11 +108,11 @@
 												<ul class="select__options option">
 													<li class="option__item">
 														<div class="option__caption">
-															Ruble
+															Alfa
 														</div>
 														<div class="option__position">
 															<div class="option__icon">
-																<img src="img/change/RUB.svg" alt="RUB">
+																<img src="img/change/Alfa.svg" alt="Alfa">
 															</div>
 															<div class="option__label">
 																RUB
@@ -121,18 +121,96 @@
 													</li>
 													<li class="option__item">
 														<div class="option__caption">
-															Ukraine
+															Raiffeisen
 														</div>
 														<div class="option__position">
 															<div class="option__icon">
-																<img src="img/change/UAH.svg" alt="UAH">
+																<img src="img/change/Raiffeisen.svg" alt="Raiffeisen">
+															</div>
+															<div class="option__label">
+																RUB
+															</div>
+														</div>
+													</li>
+													<li class="option__item">
+														<div class="option__caption">
+															Sberbank
+														</div>
+														<div class="option__position">
+															<div class="option__icon">
+																<img src="img/change/Sber.svg" alt="Sber">
+															</div>
+															<div class="option__label">
+																RUB
+															</div>
+														</div>
+													</li>
+													<li class="option__item">
+														<div class="option__caption">
+															Tinkoff
+														</div>
+														<div class="option__position">
+															<div class="option__icon">
+																<img src="img/change/Tinkoff.svg" alt="Tinkoff">
+															</div>
+															<div class="option__label">
+																RUB
+															</div>
+														</div>
+													</li>
+													<li class="option__item">
+														<div class="option__caption">
+															SBP
+														</div>
+														<div class="option__position">
+															<div class="option__icon">
+																<img src="img/change/sbp.svg" alt="sbp">
+															</div>
+															<div class="option__label">
+																RUB
+															</div>
+														</div>
+													</li>
+													<li class="option__item">
+														<div class="option__caption">
+															Visa/Master Card
+														</div>
+														<div class="option__position">
+															<div class="option__icon">
+																<img src="img/change/visa.svg" alt="visa">
+															</div>
+															<div class="option__label">
+																RUB
+															</div>
+														</div>
+													</li>
+													<li class="option__item">
+														<div class="option__caption">
+															Private24
+														</div>
+														<div class="option__position">
+															<div class="option__icon">
+																<img src="img/change/Privat24.svg" alt="Privat24">
 															</div>
 															<div class="option__label">
 																UAH
 															</div>
 														</div>
 													</li>
-												</ul> 
+													<li class="option__item">
+														<div class="option__caption">
+															Monobank
+														</div>
+														<div class="option__position">
+															<div class="option__icon">
+																<img src="img/change/Mono.svg" alt="Mono">
+															</div>
+															<div class="option__label">
+																UAH
+															</div>
+														</div>
+													</li>
+												</ul>
 											</div>
 										</div>
 									</div>
@@ -219,15 +297,15 @@
 												<div class="select__title">
 													Other currencies
 												</div>
-												
+
 												<ul class="select__options option">
 													<li class="option__item">
 														<div class="option__caption">
-															Ruble
+															Alfa
 														</div>
 														<div class="option__position">
 															<div class="option__icon">
-																<img src="img/change/RUB.svg" alt="RUB">
+																<img src="img/change/Alfa.svg" alt="Alfa">
 															</div>
 															<div class="option__label">
 																RUB
@@ -236,18 +314,96 @@
 													</li>
 													<li class="option__item">
 														<div class="option__caption">
-															Ukraine
+															Raiffeisen
 														</div>
 														<div class="option__position">
 															<div class="option__icon">
-																<img src="img/change/UAH.svg" alt="UAH">
+																<img src="img/change/Raiffeisen.svg" alt="Raiffeisen">
+															</div>
+															<div class="option__label">
+																RUB
+															</div>
+														</div>
+													</li>
+													<li class="option__item">
+														<div class="option__caption">
+															Sberbank
+														</div>
+														<div class="option__position">
+															<div class="option__icon">
+																<img src="img/change/Sber.svg" alt="Sber">
+															</div>
+															<div class="option__label">
+																RUB
+															</div>
+														</div>
+													</li>
+													<li class="option__item">
+														<div class="option__caption">
+															Tinkoff
+														</div>
+														<div class="option__position">
+															<div class="option__icon">
+																<img src="img/change/Tinkoff.svg" alt="Tinkoff">
+															</div>
+															<div class="option__label">
+																RUB
+															</div>
+														</div>
+													</li>
+													<li class="option__item">
+														<div class="option__caption">
+															SBP
+														</div>
+														<div class="option__position">
+															<div class="option__icon">
+																<img src="img/change/sbp.svg" alt="sbp">
+															</div>
+															<div class="option__label">
+																RUB
+															</div>
+														</div>
+													</li>
+													<li class="option__item">
+														<div class="option__caption">
+															Visa/Master Card
+														</div>
+														<div class="option__position">
+															<div class="option__icon">
+																<img src="img/change/visa.svg" alt="visa">
+															</div>
+															<div class="option__label">
+																RUB
+															</div>
+														</div>
+													</li>
+													<li class="option__item">
+														<div class="option__caption">
+															Private24
+														</div>
+														<div class="option__position">
+															<div class="option__icon">
+																<img src="img/change/Privat24.svg" alt="Privat24">
 															</div>
 															<div class="option__label">
 																UAH
 															</div>
 														</div>
 													</li>
-												</ul> 
+													<li class="option__item">
+														<div class="option__caption">
+															Monobank
+														</div>
+														<div class="option__position">
+															<div class="option__icon">
+																<img src="img/change/Mono.svg" alt="Mono">
+															</div>
+															<div class="option__label">
+																UAH
+															</div>
+														</div>
+													</li>
+												</ul>
 											</div>
 										</div>
 									</div>
@@ -558,6 +714,6 @@
 </div>
 
 
-<script src="js/convert.js"></script>
+<script src="js/convertExchange.js"></script>
 
 @stop

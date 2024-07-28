@@ -25,6 +25,7 @@
 					</ul>
 				</div>
 				<form action="{{route('exchange', ['id' => $exchangeID])}}" method="POST" data-page-address="{{route('exchange', ['id' => $exchangeID])}}" class="template__body confirmation">
+					@csrf
 					<div class="confirmation__values values-confirmation">
 
 						<!-- SEND -->
@@ -33,7 +34,7 @@
 								You send
 							</h2>
 							<div class="values-confirmation__value template-value ">
-								60.5237914 USDTTRC20
+								{{$exchangeForm['send-coins-value'] }} {{$exchangeForm['send-coins-option']}}
 							</div>
 						</section>
 
@@ -46,7 +47,7 @@
 								You get
 							</h2>
 							<div class="values-confirmation__value template-value ">
-								≈441.95135135 TRX
+								{{$exchangeForm['get-coins-value'] }} {{$exchangeForm['get-coins-option']}}
 							</div>
 						</section>
 					</div>
@@ -56,7 +57,7 @@
 						</h2>
 						<div class="address-confirmation__row">
 							<div class="address-confirmation__value template-value template-value--small">
-								TAMAsT6xVks3TwCviX5VwoTrtwKUwa4fi7
+							{{$exchangeForm['payout-exchange'] }}
 							</div>
 							<div class="address-confirmation__actions actions">
 								<button class="actions__button actions__button--copy" aria-label="copy address ">

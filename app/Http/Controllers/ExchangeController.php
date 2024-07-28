@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 
 class ExchangeController extends Controller
 {
-    public function exchangeID ($id){
+    public function exchangeID (Request $request, $id){
 
-        return view('exchange', ['exchangeID' => $id]);
+        $exchangeForm = $request->session()->get('exchangeForm', []);
+
+        return view('exchange', ['exchangeID' => $id, 'exchangeForm' => $exchangeForm]);
     }
 }

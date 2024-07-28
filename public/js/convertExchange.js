@@ -50,31 +50,23 @@ document.addEventListener('DOMContentLoaded', function() {
     async function getConversionRate(fromCurrency, toCurrency) {
         const intermediateCurrency = 'USDT'; // Промежуточная валюта
         let rate = null;
-
         try {
-            // Попытка получить прямую пару
             let response = await fetch(`/api/conversion-rate?from=${fromCurrency}&to=${toCurrency}`);
             let data = await response.json();
-
             if (data.price) {
                 rate = parseFloat(data.price);
             } else {
-                // Попытка получить обратную пару
                 console.log('Direct pair not found, checking reverse pair...');
                 const reverseResponse = await fetch(`/api/conversion-rate?from=${toCurrency}&to=${fromCurrency}`);
                 const reverseData = await reverseResponse.json();
-
                 if (reverseData.price) {
                     rate = 1 / parseFloat(reverseData.price);
                 } else if (fromCurrency === 'XMR' && (toCurrency === 'RUB' || toCurrency === 'UAH')) {
-                    // Если прямая и обратная пары не найдены, используем промежуточную конвертацию
                     console.log('Pair not found, using intermediate currency');
                     const intermediateResponse1 = await fetch(`/api/conversion-rate?from=${fromCurrency}&to=${intermediateCurrency}`);
                     const intermediateData1 = await intermediateResponse1.json();
-
                     const intermediateResponse2 = await fetch(`/api/conversion-rate?from=${intermediateCurrency}&to=${toCurrency}`);
                     const intermediateData2 = await intermediateResponse2.json();
-
                     if (intermediateData1.price && intermediateData2.price) {
                         const intermediateRate1 = parseFloat(intermediateData1.price);
                         const intermediateRate2 = parseFloat(intermediateData2.price);
@@ -84,40 +76,33 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 } else if ((fromCurrency === 'RUB' || fromCurrency === 'UAH') && toCurrency === 'XMR') {
                     console.log('Pair not found, using intermediate currency');
-                    const intermediateResponse3 = await fetch(`api/conversion-rate?from=${toCurrency}&to=${intermediateCurrency}`)
-                    const intermediateData3 = await intermediateResponse3.json()
-
-                    const intermediateResponse4 = await fetch(`api/conversion-rate?from=${intermediateCurrency}&to=${fromCurrency}`)
-                    const intermediateData4 = await intermediateResponse4.json()
-                    
-                    if(intermediateData3.price && intermediateData4.price){
-                        rate = 1 / (parseFloat(intermediateData3.price) * parseFloat(intermediateData4.price))
-                    }else {
+                    const intermediateResponse3 = await fetch(`api/conversion-rate?from=${toCurrency}&to=${intermediateCurrency}`);
+                    const intermediateData3 = await intermediateResponse3.json();
+                    const intermediateResponse4 = await fetch(`api/conversion-rate?from=${intermediateCurrency}&to=${fromCurrency}`);
+                    const intermediateData4 = await intermediateResponse4.json();
+                    if (intermediateData3.price && intermediateData4.price) {
+                        rate = 1 / (parseFloat(intermediateData3.price) * parseFloat(intermediateData4.price));
+                    } else {
                         throw new Error('Intermediate pairs not found or error retrieving rate');
                     }
-                }
-                else {
+                } else {
                     throw new Error('Direct and reverse pairs not found or error retrieving rate');
                 }
             }
-
             return rate;
         } catch (error) {
             console.error('Error fetching conversion rate:', error);
             return null;
         }
     }
-
+    
     async function updateConversion() {
         const amount = parseFloat(sendAmount.value);
-
         if (isNaN(amount)) {
             getCoinsValueInput.value = 'Invalid amount';
             return;
         }
-
         const rate = await getConversionRate(fromCurrency, toCurrency);
-
         if (rate) {
             const convertedAmount = amount * rate;
             getCoinsValueInput.value = convertedAmount.toFixed(8);
@@ -125,4 +110,5 @@ document.addEventListener('DOMContentLoaded', function() {
             getCoinsValueInput.value = 'Error retrieving rate';
         }
     }
+    
 });
