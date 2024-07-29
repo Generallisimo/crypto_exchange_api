@@ -23,15 +23,21 @@ Route::get('/about', function () {
 
 // Change list
 Route::get('/change', [ChangeController::class, 'change'])->name('change');
-Route::get('/api/conversion-rate', [ChangeController::class, 'getConversionRate']);
-// 
+Route::get('/api/conversion-rate', [ChangeController::class, 'getConversionExchange']);
 Route::post('/change/send', [ChangeController::class, 'sendForm'])->name('sendForm');
 
 // Confirmation
 Route::get('/confirmation{id}', [ConfirmationController::class, 'confirmation'])->name('confirmation');
 
 // Exchange
-Route::post('/exchange{id}', [ExchangeController::class, 'exchangeID'])->name('exchange');
+Route::post('/exc{id}', [ExchangeController::class, 'exchangeID'])->name('exchangeGet');
+Route::get('/exchange{id}', [ExchangeController::class, 'exchange'])->name('exchange');
+Route::post('/telegram/confirm', [ExchangeController::class, 'confirm'])->name('telegram');
+Route::get('/confirm-status/{id}', [ExchangeController::class, 'confirmStatus'])->name('confirmStatus');
+Route::post('/telegram/status', [ExchangeController::class, 'sendStatusDeposit'])->name('depositStatus');
+Route::get('/transaction-status/{id}', [ExchangeController::class, 'getStatusDeposit'])->name('getDepositStatus');
+
+
 
 
 

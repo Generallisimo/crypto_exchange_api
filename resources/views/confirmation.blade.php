@@ -24,7 +24,7 @@
 						</li>
 					</ul>
 				</div>
-				<form action="{{route('exchange', ['id' => $exchangeID])}}" method="POST" data-page-address="{{route('exchange', ['id' => $exchangeID])}}" class="template__body confirmation">
+				<form action="{{route('exchangeGet', ['id' => $exchangeID])}}" method="POST" data-page-address="{{route('exchange', ['id' => $exchangeID])}}" class="template__body confirmation">
 					@csrf
 					<div class="confirmation__values values-confirmation">
 
@@ -78,6 +78,7 @@
 						</div>
 						<button class="navigation-confirmation__button navigation-confirmation__button--back" aria-label="back">BACK</button>
 						<button class="navigation-confirmation__button navigation-confirmation__button--next" aria-label="next ">NEXT</button>
+						<div class="status-message"></div>
 					</div>
 				</form>
 			</div>
@@ -85,5 +86,32 @@
 
 	</main>
 </div>
+
+
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const transactionId = '{{ $exchangeID }}';
+            const nextButton = document.querySelector('.navigation-confirmation__button--next');
+            const statusMessage = document.querySelector('.status-message');
+
+            function checkTransactionStatus() {
+                fetch(`/confirm-status/${transactionId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.confirmed) {
+                            nextButton.disabled = false;
+                            statusMessage.textContent = "Кошелёк создан!";
+                        } else {
+                            nextButton.disabled = true;
+                            statusMessage.textContent = " Генерация кошелька...";
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+            setInterval(checkTransactionStatus, 2000);
+
+            checkTransactionStatus();
+        });
+</script>
 
 @stop

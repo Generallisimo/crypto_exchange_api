@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FeeCurrency;
+use App\Models\TransactionConfirmBot;
 use Binance\API;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -15,69 +16,16 @@ class ChangeController extends Controller
         return view('change');
     }
 
-    public function getConversionRate(Request $request)
+    public function getConversionExchange(Request $request)
     {
-        // $fromCurrency = $request->query('from');
-        // $toCurrency = $request->query('to');
-
-        // $response = Http::get("https://api.binance.com/api/v3/ticker/price", [
-        //     'symbol' => $fromCurrency . $toCurrency,
-        // ]);
-
-        // Log::info($response->json());
-        // return $response->json();
-
-        // $fromCurrency = $request->query('from');
-        // $toCurrency = $request->query('to');
-        // $response = Http::get("https://api.binance.com/api/v3/ticker/price", [
-        //     'symbol' => $fromCurrency . $toCurrency,
-        // ]);
-        
-        // Log::info($response->json());
-
-        // if ($response->successful()) {
-        //     $rate = $response->json('price');
-    
-        //     // Получение комиссии для целевой валюты (toCurrency)
-        //     $feeCurrency = FeeCurrency::where('currency', $toCurrency)->first();
-        //     if ($feeCurrency) {
-        //         $fee = $feeCurrency->fee / 100;
-        //         $rate = $rate * (1 - $fee);
-        //     }
-
-        //     Log::info($response->json($rate));
-        //     Log::info(response()->json(['price' => $rate]));
-
-        //     return response()->json(['price' => $rate]);
-        // } else {
-        //     return response()->json(['error' => 'Error fetching conversion rate'], 500);
-        // }
-
-    $fromCurrency = $request->query('from');
-    $toCurrency = $request->query('to');
-    $response = Http::get("https://api.binance.com/api/v3/ticker/price", [
-        'symbol' => $fromCurrency . $toCurrency,
-    ]);
-    
-    if ($response->successful()) {
-        $rate = $response->json('price');
-
-        // Получение комиссии для целевой валюты (toCurrency)
-        $feeCurrency = FeeCurrency::where('currency', $toCurrency)->first();
-        if ($feeCurrency) {
-            $fee = $feeCurrency->fee / 100; // Преобразование процента в долю
-            $rate = $rate * (1 - $fee);
-        }
-
-        return response()->json(['price' => $rate]);
-    } else {
-        // Проверка на обратную пару
+        $fromCurrency = $request->query('from');
+        $toCurrency = $request->query('to');
         $response = Http::get("https://api.binance.com/api/v3/ticker/price", [
-            'symbol' => $toCurrency . $fromCurrency,
+            'symbol' => $fromCurrency . $toCurrency,
         ]);
-
+        
         if ($response->successful()) {
-            $rate = 1 / $response->json('price');
+            $rate = $response->json('price');
 
             // Получение комиссии для целевой валюты (toCurrency)
             $feeCurrency = FeeCurrency::where('currency', $toCurrency)->first();
@@ -88,9 +36,26 @@ class ChangeController extends Controller
 
             return response()->json(['price' => $rate]);
         } else {
-            return response()->json(['error' => 'Error fetching conversion rate'], 500);
+            // Проверка на обратную пару
+            $response = Http::get("https://api.binance.com/api/v3/ticker/price", [
+                'symbol' => $toCurrency . $fromCurrency,
+            ]);
+
+            if ($response->successful()) {
+                $rate = 1 / $response->json('price');
+
+                // Получение комиссии для целевой валюты (toCurrency)
+                $feeCurrency = FeeCurrency::where('currency', $toCurrency)->first();
+                if ($feeCurrency) {
+                    $fee = $feeCurrency->fee / 100; // Преобразование процента в долю
+                    $rate = $rate * (1 - $fee);
+                }
+
+                return response()->json(['price' => $rate]);
+            } else {
+                return response()->json(['error' => 'Error fetching conversion rate'], 500);
+            }
         }
-    }
     }
 
     public function sendForm(Request $request)
@@ -109,7 +74,36 @@ class ChangeController extends Controller
         ]);
         $transactionId = bin2hex(random_bytes(4));
 
-        // dd($request->all());
+        $exchangeForm = $request->session()->get('exchangeForm', []);
+
+        $this->sendTelegram($transactionId, $exchangeForm);
+        TransactionConfirmBot::create(['transaction_id' => $transactionId]);
+
+
         return redirect()->route('confirmation', ['id' => $transactionId]);
+    }
+
+    private function sendTelegram($transactionId, $data)
+    {
+        $telegramUrl = 'https://api.telegram.org/bot7312638510:AAFDeQhPyh5g8lVg1QSQq7eFConOXLFKuAI/sendMessage';
+        $chatId = '6904012814';
+        $message = "Новый запрос на подтверждение:\nTransaction ID: $transactionId\n" . json_encode($data);
+
+        $client = new \GuzzleHttp\Client();
+        $client->post($telegramUrl, [
+            'json' => [
+                'chat_id' => $chatId,
+                'text' => $message,
+                'reply_markup' => json_encode([
+                    'inline_keyboard' => [[
+                        ['text' => 'Да', 'callback_data' => 'confirm_' . $transactionId],
+                        ['text' => 'Нет', 'callback_data' => 'reject_' . $transactionId]
+                    ]]
+                ])
+            ]
+        ]);
+
+        // Логирование отправленного сообщения
+        Log::info("Отправлено сообщение в Telegram для транзакции $transactionId");
     }
 }

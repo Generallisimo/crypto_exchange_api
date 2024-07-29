@@ -32,7 +32,7 @@
 						</h2>
 						<div class="indification-change__value">
 							<div class="indification-change__text template-value ">
-								{{$exchangeID}}
+								{{$id}}
 							</div>
 							<button class="indification-change__button" aria-label="copy address ">
 								<img src="img/template/copy.svg" alt="copy">
@@ -116,5 +116,35 @@
 
 	</main>
 </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const transactionId = '{{ $id }}';
+        const statusElement = document.querySelector('.awaiting-change__title');
+
+        function checkTransactionStatus() {
+            fetch(`/transaction-status/${transactionId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'done') {
+                        statusElement.textContent = "Transaction Status: Done";
+                    } else if (data.status === 'failed') {
+                        statusElement.textContent = "Transaction Status: Failed";
+                    } else if (data.status === 'cancelled') {
+                        statusElement.textContent = "Transaction Status: Cancelled";
+                    } else {
+                        statusElement.textContent = "Awaiting deposit";
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+				
+        }
+
+        setInterval(checkTransactionStatus, 2000);
+        checkTransactionStatus();
+    });
+</script>
+
 
 @stop

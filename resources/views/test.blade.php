@@ -1,4 +1,55 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подтверждение</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .loading {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading">
+        <h1>Ожидание подтверждения...</h1>
+        <p>Ваш запрос ожидает подтверждения через Телеграм бот.</p>
+    </div>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Currency Converter</title>
@@ -131,4 +182,4 @@
     </form>
     <div id="result"></div>
 </body>
-</html> -->
+</html> --> 
