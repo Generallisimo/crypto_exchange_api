@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transaction_confirm_bots', function (Blueprint $table) {
+        Schema::create('wallet_coins', function (Blueprint $table) {
             $table->id();
-            $table->string('transaction_id')->uniqid();
-            $table->boolean('confirmed')->default(false);
-            $table->string('status')->nullable();
-            $table->string('currency')->nullable();
+            $table->string('currency_name')->uniqid();
+            $table->string('wallet');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transaction_confirm_bots');
+        Schema::dropIfExists('wallet_coins');
     }
 };

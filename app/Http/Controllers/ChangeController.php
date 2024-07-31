@@ -72,22 +72,31 @@ class ChangeController extends Controller
             'payout-exchange' => $request->input('payout-exchange'),
             'refund-exchange' => $request->input('refund-exchange'),
         ]);
+
+
         $transactionId = bin2hex(random_bytes(4));
 
         $exchangeForm = $request->session()->get('exchangeForm', []);
 
         $this->sendTelegram($transactionId, $exchangeForm);
-        TransactionConfirmBot::create(['transaction_id' => $transactionId]);
+        TransactionConfirmBot::create(['transaction_id' => $transactionId, 'currency'=>$getCoinsOption]);
 
 
         return redirect()->route('confirmation', ['id' => $transactionId]);
     }
+    
 
     private function sendTelegram($transactionId, $data)
     {
         $telegramUrl = 'https://api.telegram.org/bot7312638510:AAFDeQhPyh5g8lVg1QSQq7eFConOXLFKuAI/sendMessage';
         $chatId = '6904012814';
-        $message = "Новый запрос на подтверждение:\nTransaction ID: $transactionId\n" . json_encode($data);
+        $fromCurrency = json_encode($data['send-coins-option'] ?? $data['select1']);
+        $toCurrency = json_encode($data['get-coins-option'] ?? $data['select2']);
+        $sendCoin = json_encode($data['send-coins-value']);
+        $getCoin = json_encode($data['get-coins-value']);
+        $path = json_encode($data['payout-exchange']);
+        // dd($dataJSON);
+        $message = "Новый запрос на подтверждение:\nTransaction ID: $transactionId\nСумма отправки: $sendCoin $fromCurrency\nСумма получения: $getCoin $toCurrency\nАдрес получения: $path \n \nDebug:\n" . json_encode($data);
 
         $client = new \GuzzleHttp\Client();
         $client->post($telegramUrl, [

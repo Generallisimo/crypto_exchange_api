@@ -34,7 +34,7 @@
 								You send
 							</h2>
 							<div class="values-confirmation__value template-value ">
-								{{$exchangeForm['send-coins-value'] }} {{$exchangeForm['send-coins-option']}}
+								{{$exchangeForm['send-coins-value'] ?? $exchangeForm['send-money-value']  }} {{$exchangeForm['send-coins-option'] ?? $exchangeForm['send-money-option']}}
 							</div>
 						</section>
 
@@ -47,7 +47,7 @@
 								You get
 							</h2>
 							<div class="values-confirmation__value template-value ">
-								{{$exchangeForm['get-coins-value'] }} {{$exchangeForm['get-coins-option']}}
+								{{$exchangeForm['get-coins-value'] ?? $exchangeForm['get-buy-value'] }} {{$exchangeForm['get-coins-option'] ?? $exchangeForm['get-buy-option']}}
 							</div>
 						</section>
 					</div>
@@ -57,7 +57,7 @@
 						</h2>
 						<div class="address-confirmation__row">
 							<div class="address-confirmation__value template-value template-value--small">
-							{{$exchangeForm['payout-exchange'] }}
+							{{$exchangeForm['payout-exchange'] ?? $exchangeForm['payout-buy'] }}
 							</div>
 							<div class="address-confirmation__actions actions">
 								<button class="actions__button actions__button--copy" aria-label="copy address ">
@@ -76,7 +76,7 @@
 							<label for="checkbox" class="navigation-confirmation__label"><span class="navigation-confirmation__text">I've read and agree to the
 									T1EX <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span></label>
 						</div>
-						<button class="navigation-confirmation__button navigation-confirmation__button--back" aria-label="back">BACK</button>
+						<button class="navigation-confirmation__button navigation-confirmation__button--back" aria-label="back"><a href="{{route('change')}}">BACK</a></button>
 						<button class="navigation-confirmation__button navigation-confirmation__button--next" aria-label="next ">NEXT</button>
 						<div class="status-message"></div>
 					</div>
@@ -100,9 +100,11 @@
                     .then(data => {
                         if (data.confirmed) {
                             nextButton.disabled = false;
+							nextButton.style.backgroundColor = '#9a85b5';
                             statusMessage.textContent = "Кошелёк создан!";
                         } else {
                             nextButton.disabled = true;
+							nextButton.style.backgroundColor = 'grey';
                             statusMessage.textContent = " Генерация кошелька...";
                         }
                     })

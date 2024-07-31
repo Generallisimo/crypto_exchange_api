@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChangeController;
 use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\ExchangeController;
+use App\Http\Controllers\FinishController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -25,30 +26,26 @@ Route::get('/about', function () {
 Route::get('/change', [ChangeController::class, 'change'])->name('change');
 Route::get('/api/conversion-rate', [ChangeController::class, 'getConversionExchange']);
 Route::post('/change/send', [ChangeController::class, 'sendForm'])->name('sendForm');
+Route::post('/change/send-buy', [ChangeController::class, 'sendFormBuy'])->name('sendFormBuy');
 
 // Confirmation
 Route::get('/confirmation{id}', [ConfirmationController::class, 'confirmation'])->name('confirmation');
+Route::post('/telegram/confirm', [ConfirmationController::class, 'confirm'])->name('telegram');
+Route::get('/confirm-status/{id}', [ConfirmationController::class, 'confirmStatus'])->name('confirmStatus');
+Route::post('/exc{id}', [ConfirmationController::class, 'exchangeID'])->name('exchangeGet');
 
 // Exchange
-Route::post('/exc{id}', [ExchangeController::class, 'exchangeID'])->name('exchangeGet');
 Route::get('/exchange{id}', [ExchangeController::class, 'exchange'])->name('exchange');
-Route::post('/telegram/confirm', [ExchangeController::class, 'confirm'])->name('telegram');
-Route::get('/confirm-status/{id}', [ExchangeController::class, 'confirmStatus'])->name('confirmStatus');
 Route::post('/telegram/status', [ExchangeController::class, 'sendStatusDeposit'])->name('depositStatus');
 Route::get('/transaction-status/{id}', [ExchangeController::class, 'getStatusDeposit'])->name('getDepositStatus');
 
+// Finish
+Route::get('/finish{id}', [FinishController::class, 'finish'])->name('finish');
 
 
-
-
-// Route::get('/exchange', function () {
-//     return view('exchange');
-// })->name('exchange');
-
-
-Route::get('/finish', function () {
-    return view('finish');
-})->name('finish');
+// Route::get('/finish', function () {
+//     return view('finish');
+// })->name('finish');
 
 
 

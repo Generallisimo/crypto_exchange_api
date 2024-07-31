@@ -43,14 +43,14 @@
 					<section class="change__awaiting awaiting-change">
 						<div class="awaiting-change__column">
 							<h2 class="awaiting-change__title template-value">
-								Awaiting deposit
+								Платеж в обработке
 							</h2>
 							<div class="awaiting-change__item">
 								<h3 class="awaiting-change__subtitle template-subtitle ">
 									You send
 								</h3>
 								<div class="awaiting-change__value  template-value">
-								{{$exchangeForm['send-coins-value'] }} {{$exchangeForm['send-coins-option']}}
+								{{$exchangeForm['send-coins-value'] ?? $exchangeForm['send-money-value'] }} {{$exchangeForm['send-coins-option'] ?? $exchangeForm['send-money-option']}}
 								</div>
 							</div>
 							<div class="awaiting-change__item">
@@ -59,7 +59,7 @@
 								</h3>
 								<div class="awaiting-change__row">
 									<div class="awaiting-change__value  template-value template-value--small">
-									{{$exchangeForm['payout-exchange'] }}
+									{{$exchangeForm['payout-exchange'] ?? $exchangeForm['payout-buy'] }}
 									</div>
 									<div class="awaiting-change__actions actions">
 										<button class="actions__button actions__button--copy" aria-label="copy address ">
@@ -86,7 +86,7 @@
 								You get
 							</h3>
 							<div class="get-change__value  template-value">
-							{{$exchangeForm['get-coins-value'] }} {{$exchangeForm['get-coins-option']}}
+							{{$exchangeForm['get-coins-value'] ?? $exchangeForm['get-buy-value'] }} {{$exchangeForm['get-coins-option'] ?? $exchangeForm['get-buy-option']}}
 							</div>
 
 							<h3 class="get-change__subtitle template-subtitle ">
@@ -94,7 +94,7 @@
 							</h3>
 							<div class="get-change__row">
 								<div class="get-change__value  template-value template-value--small">
-									TAMAsT6xVks3TwCviX5VwoTrtwKUwa4fi7
+									{{$exchangeForm['wallet']}}
 								</div>
 								<div class="get-change__actions actions">
 									<button class="actions__button actions__button--copy" aria-label="copy address ">
@@ -128,13 +128,14 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'done') {
-                        statusElement.textContent = "Transaction Status: Done";
+                        statusElement.textContent = "Статус платежа: Done";
+						window.location.href = `/finish${transactionId}`;
                     } else if (data.status === 'failed') {
-                        statusElement.textContent = "Transaction Status: Failed";
+                        statusElement.innerHTML = "Статус платежа: Failed <br>(Ошибка, обратитесь в техподдержку)";
                     } else if (data.status === 'cancelled') {
-                        statusElement.textContent = "Transaction Status: Cancelled";
+                        statusElement.textContent = "Статус платежа: Cancelled";
                     } else {
-                        statusElement.textContent = "Awaiting deposit";
+                        statusElement.textContent = "Платеж в обработке";
                     }
                 })
                 .catch(error => console.error('Error:', error));

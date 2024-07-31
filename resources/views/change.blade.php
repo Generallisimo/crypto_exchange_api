@@ -14,7 +14,7 @@
 				<div data-tabs class="exchange__wrapper">
 					<div data-tabs-titles class="exchange__header header-exchange">
 						<button class="header-exchange__button _tab-active"><span>Crypto Exchange</span></button>
-						<button class="header-exchange__button"><span>Buy Crypto</span></button>
+						<!-- <button class="header-exchange__button"><span>Buy Crypto</span></button> -->
 					</div>
 					<div class="exchange__steps steps-exchange">
 						<ul class="steps-exchange__list	">
@@ -410,14 +410,13 @@
 								</div>
 								<div class="body-exchange__row body-exchange__row--alert">
 									<div class="body-exchange__column form-row ">
-										<input autocomplete="off" type="number" id="payout-exchange" name="payout-exchange" placeholder="Enter the recipient’s ETH address" class=" form-row__input" data-validate required data-required data-error="Address is invalid">
-										<label class=" form-row__label" for="payout-exchange">Enter the recipient’s ETH
-											address</label>
-										<div class="body-exchange__alert">Do not provide a smart contract as your ETH payout address</div>
+										<input autocomplete="off" id="payout-exchange" name="payout-exchange" placeholder="Enter the recipient’s address" class=" form-row__input" data-validate required data-required data-error="Address is invalid">
+										<label class=" form-row__label" for="payout-exchange">Enter the recipient’s address</label>
+										<div class="body-exchange__alert">Do not provide a smart contract as your payout address</div>
 									</div>
 									<button class="body-exchange__button" type="submit">NEXT</button>
 								</div>
-								<div data-spollers class="body-exchange__spollers spollers-exchange">
+								<!-- <div data-spollers class="body-exchange__spollers spollers-exchange">
 									<details class="spollers-exchange__item">
 										<summary class="spollers-exchange__title">Refund address</summary>
 										<div class="spollers-exchange__body">
@@ -429,25 +428,25 @@
 											</div>
 										</div>
 									</details>
-								</div>
+								</div> -->
 							</div>
 						</form>
 						<!-- Buy Crypto -->
-						<form action="#" method="POST" data-page-address="confirmation.html" class="exchange__main  exchange__main--buy">
-
+						<!-- <form method="POST" action="{{ route('sendFormBuy') }}"  data-page-address="{{route('sendFormBuy')}}" class="exchange__main  exchange__main--buy">
+						@csrf
 							<div class="exchange__body body-exchange">
 								<div class="body-exchange__row ">
 									<label class="body-exchange__label" for="send-money-value"> You send</label>
 									<input autocomplete="off" type="number" id="send-money-value" name="send-money-value" placeholder="100" required data-required class="body-exchange__input ">
 									<div class=" body-exchange__select select">
-										<div class="select__button ">
+										<div class="select__button select__button3 ">
 											<div class="select__icon">
-												<img src="img/change/USD.svg" alt="USD">
+												<img src="img/change/Alfa.svg" alt="RUB">
 											</div>
 
-											<input class="select__value" value="USD" placeholder="USD" type="text" name="send-money-option">
+											<input class="select__value select__value3" value="RUB" placeholder="RUB" type="text" name="send-money-option" id="send-money-option">
 										</div>
-										<div class="select__wrapper">
+										<div class="select__wrapper select__wrapper3">
 											<div class="select__search">
 												<button type="button" class="select__search-icon" aria-label="search button">
 													<img src="img/change/search.svg" alt="search">
@@ -464,53 +463,105 @@
 												<ul class="select__options option">
 													<li class="option__item">
 														<div class="option__caption">
-															US Dollar
+															Alfa
 														</div>
 														<div class="option__position">
 															<div class="option__icon">
-																<img src="img/change/USD.svg" alt="USD">
+																<img src="img/change/Alfa.svg" alt="Alfa">
 															</div>
 															<div class="option__label">
-																USD
+																RUB
 															</div>
 														</div>
 													</li>
 													<li class="option__item">
 														<div class="option__caption">
-															Euro
+															Raiffeisen
 														</div>
 														<div class="option__position">
 															<div class="option__icon">
-																<img src="img/change/EUR.svg" alt="EUR">
+																<img src="img/change/Raiffeisen.svg" alt="Raiffeisen">
 															</div>
 															<div class="option__label">
-																EUR
+																RUB
 															</div>
 														</div>
 													</li>
 													<li class="option__item">
 														<div class="option__caption">
-															Pound Sterling
+															Sberbank
 														</div>
 														<div class="option__position">
 															<div class="option__icon">
-																<img src="img/change/GPB.svg" alt="GPB">
+																<img src="img/change/Sber.svg" alt="Sber">
 															</div>
 															<div class="option__label">
-																GPB
+																RUB
 															</div>
 														</div>
 													</li>
 													<li class="option__item">
 														<div class="option__caption">
-															Mexican Peso
+															Tinkoff
 														</div>
 														<div class="option__position">
 															<div class="option__icon">
-																<img src="img/change/MXN.svg" alt="MXN">
+																<img src="img/change/Tinkoff.svg" alt="Tinkoff">
 															</div>
 															<div class="option__label">
-																MXN
+																RUB
+															</div>
+														</div>
+													</li>
+													<li class="option__item">
+														<div class="option__caption">
+															SBP
+														</div>
+														<div class="option__position">
+															<div class="option__icon">
+																<img src="img/change/sbp.svg" alt="sbp">
+															</div>
+															<div class="option__label">
+																RUB
+															</div>
+														</div>
+													</li>
+													<li class="option__item">
+														<div class="option__caption">
+															Visa/Master Card
+														</div>
+														<div class="option__position">
+															<div class="option__icon">
+																<img src="img/change/visa.svg" alt="visa">
+															</div>
+															<div class="option__label">
+																RUB
+															</div>
+														</div>
+													</li>
+													<li class="option__item">
+														<div class="option__caption">
+															Private24
+														</div>
+														<div class="option__position">
+															<div class="option__icon">
+																<img src="img/change/Privat24.svg" alt="Privat24">
+															</div>
+															<div class="option__label">
+																UAH
+															</div>
+														</div>
+													</li>
+													<li class="option__item">
+														<div class="option__caption">
+															Monobank
+														</div>
+														<div class="option__position">
+															<div class="option__icon">
+																<img src="img/change/Mono.svg" alt="Mono">
+															</div>
+															<div class="option__label">
+																UAH
 															</div>
 														</div>
 													</li>
@@ -535,15 +586,15 @@
 
 								<div class="body-exchange__row">
 									<label class="body-exchange__label" for="get-buy-value">You get</label>
-									<input autocomplete="off" type="number" id="get-buy-value" name="get-buy-value" placeholder="≈0.00129786" class="body-exchange__input">
+									<input autocomplete="off"  id="get-buy-value" name="get-buy-value" placeholder="≈0.00129786" class="body-exchange__input">
 									<div class=" body-exchange__select select">
-										<div class="select__button">
+										<div class="select__button select__button4">
 											<div class="select__icon">
 												<img src="img/change/BTC.svg" alt="BTC">
 											</div>
-											<input class="select__value" value="BTC" placeholder="BTC" type="text" name="get-buy-option">
+											<input class="select__value select__value4" value="BTC" placeholder="BTC" type="text" name="get-buy-option" id="get-buy-option">
 										</div>
-										<div class="select__wrapper">
+										<div class="select__wrapper select__wrapper4">
 											<div class="select__search">
 												<button type="button" class="select__search-icon" aria-label="search button">
 													<img src="img/change/search.svg" alt="search">
@@ -573,40 +624,27 @@
 													</li>
 													<li class="option__item">
 														<div class="option__caption">
-															Ethereum
+															USDT
 														</div>
 														<div class="option__position">
 															<div class="option__icon">
-																<img src="img/change/ETH.svg" alt="ETH">
+																<img src="img/change/USDT.svg" alt="USDT">
 															</div>
 															<div class="option__label">
-																ETH
+																USDT
 															</div>
 														</div>
 													</li>
 													<li class="option__item">
 														<div class="option__caption">
-															TRON
+															Moreno
 														</div>
 														<div class="option__position">
 															<div class="option__icon">
-																<img src="img/change/TRX.svg" alt="TRX">
+																<img src="img/change/XMR.svg" alt="XMR">
 															</div>
 															<div class="option__label">
-																TRX
-															</div>
-														</div>
-													</li>
-													<li class="option__item">
-														<div class="option__caption">
-															Litecoin
-														</div>
-														<div class="option__position">
-															<div class="option__icon">
-																<img src="img/change/LTC.svg" alt="LTC">
-															</div>
-															<div class="option__label">
-																LTC
+																XMR
 															</div>
 														</div>
 													</li>
@@ -653,10 +691,10 @@
 
 								<div class="body-exchange__row body-exchange__row--alert">
 									<div class="body-exchange__column form-row">
-										<input autocomplete="off" type="number" id="payout-buy" name="payout-buy" placeholder="Enter the recipient’s ETH address" class=" form-row__input" data-validate required data-required data-error="Address is invalid">
-										<label class=" form-row__label" for="payout-buy">Enter the recipient’s ETH
+										<input autocomplete="off" type="number" id="payout-buy" name="payout-buy" placeholder="Enter the recipient’s address" class=" form-row__input" data-validate required data-required data-error="Address is invalid">
+										<label class=" form-row__label" for="payout-buy">Enter the recipient’s
 											address</label>
-										<div class="body-exchange__alert">Do not provide a smart contract as your ETH payout address</div>
+										<div class="body-exchange__alert">Do not provide a smart contract as your payout address</div>
 									</div>
 									<button class="body-exchange__button" type="submit">NEXT</button>
 								</div>
@@ -705,7 +743,7 @@
 									EXCHANGE</button>
 
 							</div>
-						</form>
+						</form> -->
 					</div>
 				</div>
 			</div>
@@ -715,5 +753,6 @@
 
 
 <script src="js/convertExchange.js"></script>
+<script src="js/convertBuy.js"></script>
 
 @stop
