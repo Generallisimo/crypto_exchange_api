@@ -6,17 +6,22 @@ use App\Models\TransactionConfirmBot;
 use App\Models\WalletCoin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Jobs\CheckTransactionStatus;
+
 
 class ExchangeController extends Controller
 {
 
     public function exchange(Request $request, $id){
         $exchangeForm = $request->session()->get('exchangeForm', []);
+        
         $transaction = TransactionConfirmBot::where('transaction_id', $id)->first();
         $currency = $transaction->currency;
         $wallet = WalletCoin::where('currency_name', $currency)->first()->wallet;
         $exchangeForm['wallet'] = $wallet;
-        // dd($exchangeForm);
+
+        CheckTransactionStatus::dispatch($id)->delay(now()->addMinutes(1));
+
         return view('exchange', ['id' => $id, 'exchangeForm' => $exchangeForm]);
     }
 
@@ -37,6 +42,9 @@ class ExchangeController extends Controller
         }
 
         $transaction->save();
+
+        
+
         return response()->json(['status' => $transaction->status]);
     }
 

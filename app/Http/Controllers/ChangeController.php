@@ -23,6 +23,8 @@ class ChangeController extends Controller
         $response = Http::get("https://api.binance.com/api/v3/ticker/price", [
             'symbol' => $fromCurrency . $toCurrency,
         ]);
+
+
         
         if ($response->successful()) {
             $rate = $response->json('price');

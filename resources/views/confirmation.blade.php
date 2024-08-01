@@ -76,7 +76,7 @@
 							<label for="checkbox" class="navigation-confirmation__label"><span class="navigation-confirmation__text">I've read and agree to the
 									T1EX <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span></label>
 						</div>
-						<button class="navigation-confirmation__button navigation-confirmation__button--back" aria-label="back"><a href="{{route('change')}}">BACK</a></button>
+						<a href="{{route('change')}}"  class="navigation-confirmation__button navigation-confirmation__button--back">BACK</a>
 						<button class="navigation-confirmation__button navigation-confirmation__button--next" aria-label="next ">NEXT</button>
 						<div class="status-message"></div>
 					</div>

@@ -85,6 +85,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     } else {
                         throw new Error('Intermediate pairs not found or error retrieving rate');
                     }
+                } else if( fromCurrency === "RUB" && toCurrency === "UAH"){
+                    rate = 0.48;
+                } else if( fromCurrency === "UAH" && toCurrency === "RUB"){
+                    rate = 2.10;
+                } else if(fromCurrency === toCurrency ){
+                    rate = 1;
                 } else {
                     throw new Error('Direct and reverse pairs not found or error retrieving rate');
                 }
@@ -98,10 +104,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     async function updateConversion() {
         const amount = parseFloat(sendAmount.value);
-        if (isNaN(amount)) {
-            getCoinsValueInput.value = 'Invalid amount';
-            return;
-        }
+        // if (isNaN(amount)) {
+        //     getCoinsValueInput.value = 'Invalid amount';
+        //     return;
+        // }
         const rate = await getConversionRate(fromCurrency, toCurrency);
         if (rate) {
             const convertedAmount = amount * rate;
