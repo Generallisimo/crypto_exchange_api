@@ -128,14 +128,14 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'done') {
-                        statusElement.textContent = "Статус платежа: Done";
+                        statusElement.textContent = "{{__('message.StatusP')}}: Done";
 						window.location.href = `/finish${transactionId}`;
                     } else if (data.status === 'failed') {
-                        statusElement.innerHTML = "Статус платежа: Failed <br>(Ошибка, обратитесь в техподдержку)";
+                        statusElement.innerHTML = "{{__('message.StatusP')}}: Failed <br>({{__('message.StatusE')}})";
                     } else if (data.status === 'cancelled') {
-                        statusElement.textContent = "Статус платежа: Cancelled";
+                        statusElement.textContent = "{{__('message.StatusP')}}: Cancelled";
                     } else {
-                        statusElement.textContent = "Платеж в обработке";
+                        statusElement.textContent = "{{__('message.Status')}}";
                     }
                 })
                 .catch(error => console.error('Error:', error));

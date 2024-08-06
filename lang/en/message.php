@@ -93,9 +93,8 @@ return [
     'StartRevTwo' => 'If you’re having problems finding ways to bridge assets from niche sectors of web3 to other niche areas and can’t find a one step, plug and play option, StealthEX is your new best friend. This is my preferred way to get EVM tokens to non-EVM chains by avoiding CEX’s or any other custodial option. With StealthEX you are in control, you minimize middle-men, and ultimately reduce capital inefficiencies.',
     'StartRevThree' => 'Quick exchange, lots of coins to swap. Also the support is great! Quick resolving (if there are any) problems. So far a great service. Used it more then 50 times',
     'OBlog' => 'Our Blog',
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
+    'Satus' => 'Payment in process',
+    'StatusP' => 'Status Payment',
+    'StatusE' => 'Error, contact tech support',
 
 ];
