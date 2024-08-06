@@ -8,28 +8,24 @@
 	<main class="page">
 		<div class="page__breadcrumbs breadcrumbs">
 			<div class="breadcrumbs__container">
-				<a class="breadcrumbs__link" href="{{ route('index') }}"><span>Main</span></a>
+				<a class="breadcrumbs__link" href="{{ route('started') }}"><span>Main</span></a>
 				<span class="breadcrumbs__item">About</span>
 			</div>
 		</div>
 		<section class="page__hero hero ">
 			<div class="hero__container decoration">
 				<h1 class="hero__title title">
-					About
+				{{__('message.About')}}
 				</h1>
 				<ul class="hero__list">
 					<li class="hero__item">
 						<article class="hero__article article-hero">
 							<div class="article-hero__content">
 								<h2 class="article-hero__title">
-									Friendly
+								{{__('message.Friendly')}}
 								</h2>
 								<div class="article-hero__text">
-									<p>We have created a simple and minimalistic interface for everyone to make cryptocurrency
-										partners. All the swaps can be
-										done in just four steps. Besides, our team is here 24/7 to answer all your questions – just drop a
-										message to
-										support@t1ex.io</p>
+									<p>{{__('message.FriendlyText')}}</p>
 								</div>
 							</div>
 							<div class="article-hero__image">
@@ -44,14 +40,10 @@
 						<article class="hero__article article-hero">
 							<div class="article-hero__content">
 								<h2 class="article-hero__title">
-									Private
+									{{__('message.Private')}}
 								</h2>
 								<div class="article-hero__text">
-									<p>T1EX is a service providing non-custodial cryptocurrency partners. You do not have to create and
-										account or disclose
-										any personal information to use our platform. Moreover, users do not store the funds on T1EX – the
-										partners are
-										performed wallet-to-wallet.</p>
+									<p>{{__('message.PrivateText')}}</p>
 								</div>
 							</div>
 							<div class="article-hero__image">
@@ -65,12 +57,10 @@
 						<article class="hero__article article-hero">
 							<div class="article-hero__content">
 								<h2 class="article-hero__title">
-									Limitless
+									{{__('message.Limitless')}}
 								</h2>
 								<div class="article-hero__text">
-									<p>We do not have upper limits for the partners performed through T1EX – you can exchange as much
-										as you want. As for the
-										minimum amounts, you will only need to have enough to cover the network fees.</p>
+									<p>{{__('message.LimitlessText')}}</p>
 								</div>
 							</div>
 							<div class="article-hero__image">
@@ -87,7 +77,7 @@
 		<section class="page__benefits benefits ">
 			<div class="benefits__container decoration">
 				<h2 class="benefits__title title">
-					Benefits
+					{{__('message.Benefits')}}
 				</h2>
 				<div class="benefits__body">
 					<ul class="benefits__list">
@@ -96,7 +86,7 @@
 								<img src="img/about/benefits/limitless.svg" alt="limitless">
 							</div>
 							<h3 class="benefits__caption">
-								Limitless
+								{{__('message.Limitless')}}
 							</h3>
 						</li>
 						<li class="benefits__item ">
@@ -104,7 +94,7 @@
 								<img src="img/about/benefits/registration.svg" alt="registration">
 							</div>
 							<h3 class="benefits__caption">
-								Registration free
+							{{__('message.BenefitsReg')}}
 							</h3>
 						</li>
 						<li class="benefits__item ">
@@ -112,7 +102,7 @@
 								<img src="img/about/benefits/private.svg" alt="private">
 							</div>
 							<h3 class="benefits__caption">
-								Private
+								{{__('message.Private')}}
 							</h3>
 						</li>
 						<li class="benefits__item ">
@@ -120,7 +110,7 @@
 								<img src="img/about/benefits/support.svg" alt="support">
 							</div>
 							<h3 class="benefits__caption">
-								24/7 support
+							{{__('message.BenefitsSup')}}
 							</h3>
 						</li>
 						<li class="benefits__item ">
@@ -128,7 +118,7 @@
 								<img src="img/about/benefits/assets.svg" alt="assets">
 							</div>
 							<h3 class="benefits__caption">
-								1400+ assets
+							{{__('message.BenefitsActive')}}
 							</h3>
 						</li>
 						<li class="benefits__item ">
@@ -136,7 +126,7 @@
 								<img src="img/about/benefits/simple.svg" alt="simple">
 							</div>
 							<h3 class="benefits__caption">
-								Simple
+								{{__('message.BenefitsSimp')}}
 							</h3>
 						</li>
 					</ul>
@@ -146,7 +136,7 @@
 		<section class="page__exchanges exchanges ">
 			<div class="exchanges__container ">
 				<h2 class="exchanges__title title">
-					Exchanges
+				{{__('message.Exchange')}}
 				</h2>
 				<div class="exchanges__body ">
 					<ul class="exchanges__list">
@@ -200,7 +190,7 @@
 		<section class="page__partners partners ">
 			<div class="partners__container ">
 				<h2 class="partners__title title">
-					Partners
+				{{__('message.Partner')}}
 				</h2>
 				<div class="partners__body">
 					<ul class="partners__list">
@@ -311,11 +301,11 @@
 		<section class="page__reviews-rate reviews-rate ">
 			<div class="reviews-rate__container decoration">
 				<h2 class="reviews-rate__title title  title--center">
-					Reviews
+					{{__('message.Reviews')}}
 				</h2>
 				<div class="reviews-rate__wrapper">
 					<h3 class="reviews-rate__caption">
-						Excellent
+						{{__('message.Excellent')}}
 					</h3>
 					<div class="reviews-rate__row">
 						<img src="img/about/reviews-rate/star.svg" alt="star">
@@ -325,7 +315,7 @@
 						<img src="img/about/reviews-rate/star.svg" alt="star">
 					</div>
 					<div class="reviews-rate__description">
-						Based on 200+ reviews
+						{{__('message.ExcellentBase')}}
 					</div>
 					<div class="reviews-rate__label">
 						Trustpilot
@@ -336,7 +326,7 @@
 		<section class="page__media media ">
 			<div class="media__container ">
 				<h2 class="media__title title  title--center">
-					Media
+				{{__('message.Media')}}
 				</h2>
 				<div class="media__slider swiper-media">
 					<div class="swiper-media__wrapper swiper-wrapper">
@@ -348,7 +338,7 @@
 
 								<div class="swiper-media__date">Mar 12/2024</div>
 								<div class="swiper-media__text">
-									T1EX - a simple way for cryptocurrency users to exchange or purchase coins
+									{{__('message.MediaOne')}}
 								</div>
 							</div>
 						</div>
@@ -360,7 +350,7 @@
 
 								<div class="swiper-media__date">Mar 12/2024</div>
 								<div class="swiper-media__text">
-									How to buy Monero - a beginner’s guide
+									{{__('message.MediaTwo')}}
 
 								</div>
 							</div>
@@ -373,7 +363,7 @@
 
 								<div class="swiper-media__date">Mar 12/2024</div>
 								<div class="swiper-media__text">
-									T1EX affiliate program
+									{{__('message.MediaThree')}}
 								</div>
 							</div>
 						</div>
@@ -387,7 +377,7 @@
 							<div class="swiper-media__content">
 								<div class="swiper-media__date">Mar 12/2024</div>
 								<div class="swiper-media__text">
-									T1EX - a simple way for cryptocurrency users to exchange or purchase coins
+									{{__('message.MediaOne')}}
 								</div>
 							</div>
 						</div>
@@ -399,7 +389,7 @@
 
 								<div class="swiper-media__date">Mar 12/2024</div>
 								<div class="swiper-media__text">
-									How to buy Monero - a beginner’s guide
+									{{__('message.MediaTwo')}}
 								</div>
 							</div>
 						</div>
@@ -411,7 +401,7 @@
 
 								<div class="swiper-media__date">Mar 12/2024</div>
 								<div class="swiper-media__text">
-									T1EX affiliate program
+									{{__('message.MediaThree')}}
 								</div>
 							</div>
 						</div>

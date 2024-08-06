@@ -6,12 +6,13 @@ use App\Models\FeeCurrency;
 use App\Models\TransactionConfirmBot;
 use Binance\API;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class ChangeController extends Controller
 {
-    public function change()
+    public function change(Request $request)
     {
         return view('change');
     }

@@ -6,7 +6,7 @@
 					</div>
 					<div class="top-footer__side">
 						<div class="top-footer__description">
-							Download our mobile app:
+							{{__('message.App')}}
 						</div>
 						<ul class="top-footer__list">
 							<li class="top-footer__item">
@@ -26,46 +26,41 @@
 				<div class="footer__middle middle-footer">
 					<div class="middle-footer__description">
 						<p>
-							T1EX is an instant cryptocurrency exchange for limitless swaps. Our service is free from registration and does
-							not store
-							user’s funds on the platform. StealthEX is the best place to buy cryptocurrency.
+						{{__('message.FootOne')}}
 						</p>
 						<p>
-							1400+ coins and tokens are available for quick and easy exchanges. Data privacy and security is a top priority
-							for
-							StealthEX, so all the swaps are non-custodial, and forever will be.
+						{{__('message.FootTwo')}}
 						</p>
 					</div>
 					<div data-spollers='767' class=" middle-footer__menu spollers">
 						<details class="spollers__column">
-							<summary class="spollers__title">About</summary>
+							<summary class="spollers__title">{{__('message.About')}}</summary>
 							<div class="spollers__body">
 								<ul class="spollers__list">
 									<li class="spollers__item">
-										<a href="#" class="spollers__link">How it works</a>
+										<a href="#" class="spollers__link">{{__('message.FAQOne')}}</a>
 									</li>
-									<li class="spollers__item"><a href="#" class="spollers__link">About</a></li>
-									<li class="spollers__item"><a href="#" class="spollers__link">Contacts</a></li>
+									<li class="spollers__item"><a href="#" class="spollers__link">{{__('message.About')}}</a></li>
+									<li class="spollers__item"><a href="#" class="spollers__link">{{__('message.Contacts')}}</a></li>
 									<li class="spollers__item"><a href="#" class="spollers__link">FAQ</a></li>
-									<li class="spollers__item"><a href="#" class="spollers__link">Blog</a></li>
+									<li class="spollers__item"><a href="#" class="spollers__link">{{__('message.Blog')}}</a></li>
 									<li class="spollers__item"><a href="#" class="spollers__link">KYC/AML</a></li>
-									<li class="spollers__item"><a href="#" class="spollers__link">Press</a></li>
 
 								</ul>
 							</div>
 						</details>
 						<details class="spollers__column">
-							<summary class="spollers__title">For Partners</summary>
+							<summary class="spollers__title">{{__('message.FPartner')}}</summary>
 							<div class="spollers__body">
 								<ul class="spollers__list">
-									<li class="spollers__item"> <a href="#" class="spollers__link">Affiliate Tools</a></li>
-									<li class="spollers__item"> <a href="#" class="spollers__link">Development API</a></li>
-									<li class="spollers__item"> <a href="#" class="spollers__link">Partner Login</a></li>
+									<li class="spollers__item"> <a href="#" class="spollers__link">{{__('message.FPartnerOne')}}</a></li>
+									<li class="spollers__item"> <a href="#" class="spollers__link">{{__('message.FPartnerTwo')}}</a></li>
+									<li class="spollers__item"> <a href="#" class="spollers__link">{{__('message.FPartnerThree')}}</a></li>
 								</ul>
 							</div>
 						</details>
 						<details class="spollers__column">
-							<summary class="spollers__title">Supported coins</summary>
+							<summary class="spollers__title">{{__('message.SupCoin')}}</summary>
 							<div class="spollers__body">
 								<ul class="spollers__list">
 									<li class="spollers__item"> <a href="#" class="spollers__link">Bitcoin (BTC)</a>
@@ -88,7 +83,7 @@
 							</div>
 						</details>
 						<details class="spollers__column">
-							<summary class="spollers__title">Exchange Pairs</summary>
+							<summary class="spollers__title">{{__('message.ExPar')}}</summary>
 							<div class="spollers__body">
 								<ul class="spollers__list">
 									<li class="spollers__item"> <a href="#" class="spollers__link">SOL to ETH</a>
@@ -115,7 +110,7 @@
 							</div>
 						</details>
 						<details class="spollers__column">
-							<summary class="spollers__title">Buy Crypto</summary>
+							<summary class="spollers__title">{{__('message.BuyCry')}}</summary>
 							<div class="spollers__body">
 								<ul class="spollers__list">
 
@@ -165,13 +160,13 @@
 						<li class="social__item">
 							<a href="#" class="social__link">
 								<img src="img/footer/s_tg.svg" alt="telegram CHANNEL">
-								CHANNEL
+								{{__('message.Channel')}}
 							</a>
 						</li>
 						<li class="social__item">
 							<a href="#" class="social__link">
 								<img src="img/footer/s_tg.svg" alt="telegram CHAT">
-								CHAT
+								{{__('message.Chat')}}
 							</a>
 						</li>
 
@@ -180,7 +175,7 @@
 
 					<div class="down-footer__payment payment">
 						<div class="payment__text">
-							Buy crypto with:
+							{{__('message.BuyCrypWith')}}
 						</div>
 						<ul class="payment__list">
 							<li class="payment__item">
@@ -225,8 +220,8 @@
 						</div>
 
 						<div class="info__pages">
-							<a href="#">Privacy Policy</a>
-							<a href="#">Terms of Use</a>
+							<a href="#">{{__('message.DecidedThree')}}</a>
+							<a href="#">{{__('message.DecidedTwo')}}</a>
 						</div>
 
 						<div class="info__partners">

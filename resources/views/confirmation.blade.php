@@ -11,16 +11,16 @@
 				<div class="template__steps  steps-exchange">
 					<ul class="steps-exchange__list	">
 						<li class="steps-exchange__item ">
-							<div class="steps-exchange__text ">Send to</div>
+							<div class="steps-exchange__text ">{{__('message.Send')}}</div>
 						</li>
 						<li class="steps-exchange__item active">
-							<div class="steps-exchange__text">Confirmation</div>
+							<div class="steps-exchange__text">{{__('message.Confirmation')}}</div>
 						</li>
 						<li class="steps-exchange__item">
-							<div class="steps-exchange__text">Exchange</div>
+							<div class="steps-exchange__text">{{__('message.Exchange')}}</div>
 						</li>
 						<li class="steps-exchange__item">
-							<div class="steps-exchange__text">Finish</div>
+							<div class="steps-exchange__text">{{__('message.Finish')}}</div>
 						</li>
 					</ul>
 				</div>
@@ -31,7 +31,7 @@
 						<!-- SEND -->
 						<section class="values-confirmation__column">
 							<h2 class="values-confirmation__title template-title">
-								You send
+								{{__('message.YSend')}}
 							</h2>
 							<div class="values-confirmation__value template-value ">
 								{{$exchangeForm['send-coins-value'] ?? $exchangeForm['send-money-value']  }} {{$exchangeForm['send-coins-option'] ?? $exchangeForm['send-money-option']}}
@@ -44,7 +44,7 @@
 						<!-- GET -->
 						<section class="values-confirmation__column">
 							<h2 class="values-confirmation__title template-title">
-								You get
+								{{__('message.YGet')}}
 							</h2>
 							<div class="values-confirmation__value template-value ">
 								{{$exchangeForm['get-coins-value'] ?? $exchangeForm['get-buy-value'] }} {{$exchangeForm['get-coins-option'] ?? $exchangeForm['get-buy-option']}}
@@ -53,7 +53,7 @@
 					</div>
 					<section class="confirmation__address address-confirmation">
 						<h2 class="address-confirmation__title template-title">
-							To address
+							{{__('message.TOAddress')}}
 						</h2>
 						<div class="address-confirmation__row">
 							<div class="address-confirmation__value template-value template-value--small">
@@ -73,8 +73,8 @@
 					<div class="confirmation__navigation navigation-confirmation">
 						<div class="navigation-confirmation__checkbox">
 							<input id="checkbox" data-error="Помилка" class="navigation-confirmation__input" type="checkbox" value="1" name="checkbox">
-							<label for="checkbox" class="navigation-confirmation__label"><span class="navigation-confirmation__text">I've read and agree to the
-									T1EX <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span></label>
+							<label for="checkbox" class="navigation-confirmation__label"><span class="navigation-confirmation__text">{{__('message.DecidedOne')}}
+									T1EX <a href="#">{{__('message.DecidedTwo')}}</a> {{__('message.DecidedFour')}} <a href="#">{{__('message.DecidedThree')}}</a></span></label>
 						</div>
 						<a href="{{route('change')}}"  class="navigation-confirmation__button navigation-confirmation__button--back">BACK</a>
 						<button class="navigation-confirmation__button navigation-confirmation__button--next" aria-label="next ">NEXT</button>
@@ -101,11 +101,11 @@
                         if (data.confirmed) {
                             nextButton.disabled = false;
 							nextButton.style.backgroundColor = '#9a85b5';
-                            statusMessage.textContent = "Кошелёк создан!";
+                            statusMessage.textContent = "{{__('message.JSCre')}}";
                         } else {
                             nextButton.disabled = true;
 							nextButton.style.backgroundColor = 'grey';
-                            statusMessage.textContent = " Генерация кошелька...";
+                            statusMessage.textContent = " {{__('message.JSGen')}}";
                         }
                     })
                     .catch(error => console.error('Error:', error));

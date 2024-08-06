@@ -11,26 +11,26 @@
 				<div class="template__steps  steps-exchange">
 					<ul class="steps-exchange__list	">
 						<li class="steps-exchange__item ">
-							<div class="steps-exchange__text ">Send to</div>
+							<div class="steps-exchange__text ">{{__('message.Send')}}</div>
 						</li>
 						<li class="steps-exchange__item ">
-							<div class="steps-exchange__text">Confirmation</div>
+							<div class="steps-exchange__text">{{__('message.Confirmation')}}</div>
 						</li>
 						<li class="steps-exchange__item ">
-							<div class="steps-exchange__text">Exchange</div>
+							<div class="steps-exchange__text">{{__('message.Exchange')}}</div>
 						</li>
 						<li class="steps-exchange__item active">
-							<div class="steps-exchange__text">Finish</div>
+							<div class="steps-exchange__text">{{__('message.Finish')}}</div>
 						</li>
 					</ul>
 				</div>
 				<div class="template__body finish">
 					<div class="finish__column">
 						<h2 class="finish__title  template-title">
-							Congratulations!
+							{{__('message.Congratulations')}}
 						</h2>
 						<div class="finish__text">
-							You have successfully finished the payment
+							{{__('message.CongratulationsTwo')}}
 						</div>
 						<div class="finish__icon check-animate">
 							<svg viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">

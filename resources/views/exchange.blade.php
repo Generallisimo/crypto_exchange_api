@@ -12,23 +12,23 @@
 				<div class="template__steps  steps-exchange">
 					<ul class="steps-exchange__list	">
 						<li class="steps-exchange__item ">
-							<div class="steps-exchange__text ">Send to</div>
+							<div class="steps-exchange__text ">{{__('message.Send')}}</div>
 						</li>
 						<li class="steps-exchange__item ">
-							<div class="steps-exchange__text">Confirmation</div>
+							<div class="steps-exchange__text">{{__('message.Confirmation')}}</div>
 						</li>
 						<li class="steps-exchange__item active">
-							<div class="steps-exchange__text">Exchange</div>
+							<div class="steps-exchange__text">{{__('message.Exchange')}}</div>
 						</li>
 						<li class="steps-exchange__item">
-							<div class="steps-exchange__text">Finish</div>
+							<div class="steps-exchange__text">{{__('message.Finish')}}</div>
 						</li>
 					</ul>
 				</div>
 				<form action="#" method="POST" data-dev class="template__body change">
 					<section class="change__indification indification-change ">
 						<h2 class="indification-change__title template-title">
-							Exchange ID:
+							{{__('message.Exchange')}} ID:
 						</h2>
 						<div class="indification-change__value">
 							<div class="indification-change__text template-value ">
@@ -47,7 +47,7 @@
 							</h2>
 							<div class="awaiting-change__item">
 								<h3 class="awaiting-change__subtitle template-subtitle ">
-									You send
+									{{__('message.YSend')}}
 								</h3>
 								<div class="awaiting-change__value  template-value">
 								{{$exchangeForm['send-coins-value'] ?? $exchangeForm['send-money-value'] }} {{$exchangeForm['send-coins-option'] ?? $exchangeForm['send-money-option']}}
@@ -55,7 +55,7 @@
 							</div>
 							<div class="awaiting-change__item">
 								<h3 class="awaiting-change__subtitle template-subtitle ">
-									To address
+									{{__('message.TOAddress')}}
 								</h3>
 								<div class="awaiting-change__row">
 									<div class="awaiting-change__value  template-value template-value--small">
@@ -83,14 +83,14 @@
 					<section class="change__get get-change">
 						<div class="get-change__column">
 							<h3 class="get-change__subtitle template-subtitle ">
-								You get
+								{{__('message.YGet')}}
 							</h3>
 							<div class="get-change__value  template-value">
 							{{$exchangeForm['get-coins-value'] ?? $exchangeForm['get-buy-value'] }} {{$exchangeForm['get-coins-option'] ?? $exchangeForm['get-buy-option']}}
 							</div>
 
 							<h3 class="get-change__subtitle template-subtitle ">
-								Recipient's address:
+							{{__('message.AddressRes')}}
 							</h3>
 							<div class="get-change__row">
 								<div class="get-change__value  template-value template-value--small">
@@ -106,7 +106,7 @@
 								</div>
 							</div>
 						</div>
-						<button class="get-change__button" aria-label="Support ">Support</button>
+						<button class="get-change__button" aria-label="Support ">{{__('message.Support')}}</button>
 					</section>
 				</form>
 

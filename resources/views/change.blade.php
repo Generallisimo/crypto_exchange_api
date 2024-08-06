@@ -9,26 +9,27 @@
 		<section class="page__exchange exchange">
 			<div class="exchange__container">
 				<h1 class="exchange__title  title title--center">
-					<span>Best crypto</span> exchange for you
+					<span>{{__('message.Best')}} crypto</span> {{__('message.ExchangeTwo')}}
 				</h1>
 				<div data-tabs class="exchange__wrapper">
 					<div data-tabs-titles class="exchange__header header-exchange">
-						<button class="header-exchange__button _tab-active"><span>Crypto Exchange</span></button>
+						<button class="header-exchange__button _tab-active"><span>Crypto {{__('message.Exchange')}}</span></button>
 						<!-- <button class="header-exchange__button"><span>Buy Crypto</span></button> -->
 					</div>
 					<div class="exchange__steps steps-exchange">
 						<ul class="steps-exchange__list	">
+						<!-- <p>Current Locale: {{ App::getLocale() }}</p> -->
 							<li class="steps-exchange__item active">
-								<div class="steps-exchange__text ">Send to</div>
+								<div class="steps-exchange__text ">{{__('message.Send')}}</div>
 							</li>
 							<li class="steps-exchange__item">
-								<div class="steps-exchange__text">Confirmation</div>
+								<div class="steps-exchange__text">{{__('message.Confirmation')}}</div>
 							</li>
 							<li class="steps-exchange__item">
-								<div class="steps-exchange__text">Exchange</div>
+								<div class="steps-exchange__text">{{__('message.Exchange')}}</div>
 							</li>
 							<li class="steps-exchange__item">
-								<div class="steps-exchange__text">Finish</div>
+								<div class="steps-exchange__text">{{__('message.Finish')}}</div>
 							</li>
 						</ul>
 					</div>
@@ -38,7 +39,7 @@
 							@CSRF
 							<div class="exchange__body body-exchange">
 								<div class="body-exchange__row ">
-									<label class="body-exchange__label" for="send-coins-value"> You send</label>
+									<label class="body-exchange__label" for="send-coins-value"> {{__('message.YSend')}}</label>
 									<input autocomplete="off" type="number" id="send-coins-value" name="send-coins-value" placeholder="0.1" required class="body-exchange__input ">
 									<div class=" body-exchange__select select">
 										<div class="select__button select__button1">
@@ -59,7 +60,7 @@
 											</div>
 											<div class="select__body">
 												<div class="select__title">
-													Popular currencies
+												{{__('message.PopCurrency')}}
 												</div>
 												<ul class="select__options option">
 													<li class="option__item">
@@ -103,7 +104,7 @@
 													</li>
 												</ul>
 												<div class="select__title">
-													Other currencies
+												{{__('message.OtherCurrency')}}
 												</div>
 												<ul class="select__options option">
 													<li class="option__item">
@@ -222,7 +223,7 @@
 										<img src="img/change/unlock.svg" alt="unlock">
 									</div>
 									<div class="rate-exchange__description">
-										Floating rate
+									{{__('message.FloRate')}}
 									</div>
 									<div class="rate-exchange__arrow">
 										<img src="img/change/exchange.svg" alt="change">
@@ -230,7 +231,7 @@
 								</div>
 
 								<div class="body-exchange__row">
-									<label class="body-exchange__label" for="get-coins-value">You get</label>
+									<label class="body-exchange__label" for="get-coins-value">{{__('message.YGet')}}</label>
 									<input autocomplete="off" type="" id="get-coins-value" name="get-coins-value" placeholder="≈1.81059138" style="pointer-events:all" class="body-exchange__input">
 									<div class=" body-exchange__select select">
 										<div class="select__button select__button2">
@@ -251,7 +252,7 @@
 											</div>
 											<div class="select__body">
 												<div class="select__title">
-													Popular currencies
+													{{__('message.PopCurrency')}}
 												</div>
 												<ul class="select__options option">
 													<li class="option__item">
@@ -295,7 +296,7 @@
 													</li>
 												</ul>
 												<div class="select__title">
-													Other currencies
+													{{__('message.OtherCurrency')}}
 												</div>
 
 												<ul class="select__options option">
@@ -410,11 +411,11 @@
 								</div>
 								<div class="body-exchange__row body-exchange__row--alert">
 									<div class="body-exchange__column form-row ">
-										<input autocomplete="off" id="payout-exchange" name="payout-exchange" placeholder="Enter the recipient’s address" class=" form-row__input" data-validate required data-required data-error="Address is invalid">
-										<label class=" form-row__label" for="payout-exchange">Enter the recipient’s address</label>
-										<div class="body-exchange__alert">Do not provide a smart contract as your payout address</div>
+										<input autocomplete="off" id="payout-exchange" name="payout-exchange" placeholder="{{__('message.Address')}}" class=" form-row__input" data-validate required data-required data-error="Address is invalid">
+										<label class=" form-row__label" for="payout-exchange">{{__('message.Address')}}</label>
+										<div class="body-exchange__alert">{{__('message.AddressDown')}}</div>
 									</div>
-									<button class="body-exchange__button" type="submit">NEXT</button>
+									<button class="body-exchange__button" type="submit">{{__('message.Next')}}</button>
 								</div>
 								<!-- <div data-spollers class="body-exchange__spollers spollers-exchange">
 									<details class="spollers-exchange__item">
